@@ -32,5 +32,10 @@ jobs:
       run: dotnet restore --runtime ${{ matrix.runtime }}
     - name: Test
       run: dotnet test --no-restore --configuration release
-    - name: Build release artifacts
+    - name: Build artifacts
       run: dotnet publish src/HelloWorld/HelloWorld.csproj --configuration release --self-contained true --runtime ${{ matrix.runtime }} --output dist/${{ matrix.runtime }}
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: helloworld-${{ github.ref_name }}-${{ matrix.runtime }}
+        path: dist/${{ matrix.runtime }}
