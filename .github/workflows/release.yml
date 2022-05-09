@@ -1,9 +1,17 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      releaseName:
+        description: 'Release Name'
+        required: true
+        type: string
+      prerelease:
+        description: 'Prerelease'
+        required: true
+        default: true
+        type: boolean
 
 jobs:
   build:
@@ -37,5 +45,5 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: helloworld-${{ github.ref_name }}-${{ matrix.runtime }}
+        name: helloworld-${{ github.events.inputs.releaseName }}-${{ matrix.runtime }}
         path: dist/${{ matrix.runtime }}
