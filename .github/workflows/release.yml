@@ -55,9 +55,10 @@ jobs:
     permissions:
       contents: write
     steps:
-    - name: Release
+    - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
-        prerelease: ${{ github.event.inputs.prerelease }}
         name: ${{ github.event.inputs.releaseName }}
+        body: "Release ${{ github.event.inputs.releaseName }}."
         tag_name: ${{ github.event.inputs.releaseName }}
+        prerelease: ${{ github.event.inputs.prerelease }}
