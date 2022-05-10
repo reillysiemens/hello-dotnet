@@ -16,6 +16,8 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
+    environment:
+      name: production
     strategy:
       matrix:
         runtime: [linux-x64, osx-x64, osx-arm64, win-x64]
