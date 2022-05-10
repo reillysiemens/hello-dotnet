@@ -45,13 +45,17 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: helloworld-${{ github.events.inputs.releaseName }}-${{ matrix.runtime }}
+        name: helloworld-${{ github.event.inputs.releaseName }}-${{ matrix.runtime }}
         path: dist/${{ matrix.runtime }}
-  tag:
+  release:
     runs-on: ubuntu-latest
     needs: build
     environment:
       name: production
     steps:
-    - name: Tag
-      run: echo ${{ github.events.inputs.releaseName }}
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        prerelease: ${{ github.event.inputs.prerelease }}
+        name: ${{ github.event.inputs.releaseName }}
+        tag_name: ${{ github.event.inputs.releaseName }}
