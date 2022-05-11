@@ -100,31 +100,26 @@ jobs:
     permissions:
       contents: write
     steps:
-    # TODO: Downloads appear to be broken.
     - name: Download win-x64 artifact
       uses: actions/download-artifact@v3
       with:
         name: helloworld-${{ github.event.inputs.version }}-win-x64.zip
-        path: helloworld-${{ github.event.inputs.version }}-win-x64.zip
     - name: Download osx-x64 artifact
       uses: actions/download-artifact@v3
       with:
         name: helloworld-${{ github.event.inputs.version }}-osx-x64.tar.gz
-        path: helloworld-${{ github.event.inputs.version }}-osx-x64.tar.gz
     - name: Download osx-arm64 artifact
       uses: actions/download-artifact@v3
       with:
         name: helloworld-${{ github.event.inputs.version }}-osx-arm64.tar.gz
-        path: helloworld-${{ github.event.inputs.version }}-osx-arm64.tar.gz
     - name: Download linux-x64 artifact
       uses: actions/download-artifact@v3
       with:
         name: helloworld-${{ github.event.inputs.version }}-linux-x64.tar.gz
-        path: helloworld-${{ github.event.inputs.version }}-linux-x64.tar.gz
-    - name: Where the heck am I?
+    - name: Directory debugging
       run: |
         pwd
-        ls -R
+        ls -lR
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
