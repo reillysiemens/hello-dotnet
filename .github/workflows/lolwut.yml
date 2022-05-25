@@ -10,5 +10,7 @@ jobs:
   lolwut:
     runs-on: windows-latest
     steps:
+    env:
+      LOLWUT: ${{ secrets.LOLWUT }}
     - run: |
-      echo ${{ secrets.LOLWUT }}
+      echo $env:LOLWUT
