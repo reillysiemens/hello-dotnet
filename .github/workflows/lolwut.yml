@@ -1,5 +1,11 @@
 name: Lolwut
 
+on:
+  workflow_dispatch:
+    inputs:
+      lolwut:
+        type: string
+
 jobs:
   lolwut:
     runs-on: windows-latest
