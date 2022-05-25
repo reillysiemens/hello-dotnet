@@ -47,25 +47,9 @@ jobs:
         name: helloworld-${{ github.event.inputs.version }}-${{ matrix.runtime }}
         path: dist/${{ matrix.runtime }}
 
-  sign:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Download all artifacts
-        uses: actions/download-artifact@v3
-      - name: Modify something
-        run: |
-          echo 'new file' > helloworld-${{ github.event.inputs.version }}-win-x64/new-file.txt
-          echo 'overwritten' > helloworld-${{ github.event.inputs.version }}-win-x64/helloworld.exe
-      - name: Upload all artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: helloworld-${{ github.event.inputs.version }}-win-x64
-          path: helloworld-${{ github.event.inputs.version }}-win-x64
-
   package:
     runs-on: ubuntu-latest
-    needs: sign
+    needs: build
     steps:
     - name: Download all artifacts
       uses: actions/download-artifact@v3
