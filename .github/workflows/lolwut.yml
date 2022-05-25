@@ -1,0 +1,8 @@
+name: Lolwut
+
+jobs:
+  lolwut:
+    runs-on: windows-latest
+    steps:
+    - run: |
+      echo ${{ secrets.LOLWUT }}
