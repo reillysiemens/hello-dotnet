@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Validate version
-      run: echo ${{ github.event.inputs.version }} | grep 'v.*' || echo "Version must start with a v (e.g., v0.1.0)"; false
+      run: echo ${{ github.event.inputs.version }} | grep 'v.*' || (echo "Version must start with a v (e.g., v0.1.0)"; false)
 
   build:
     runs-on: ${{ matrix.os }}
